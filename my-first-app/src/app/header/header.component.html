@@ -3,15 +3,21 @@
         <a routerLink="/" class="navbar-brand"> Recipe Book</a>
         <div class="collapse navbar-collapse">
             <ul class="navbar-nav navbar">
+
                 <li routerLinkActive="active"><a class="nav-link" routerLink="/recipes">Recipes</a></li>
                 <li routerLinkActive="active"><a class="nav-link" routerLink="/shoppingList">Shopping List</a></li>
             </ul>
             <ul class="nav navbar-nav ml-auto">
-                <li class="dropdown" appDropdown>
-                    <a href="#" class="dropdown-toggle" role="button">Manage</a>
+                <ng-template [ngIf]="!authCurrent.auth()">
+                    <li><a class="nav-link" routerLink='/signup'>register</a></li>
+                    <li><a class="nav-link" routerLink='/signin'>login</a></li>
+                </ng-template>
+                <li class="nav-link" (click)='onLogout()' *ngIf="authCurrent.auth()">Logout</li>
+                <li class="dropdown" appDropdown *ngIf="authCurrent.auth()">
+                    <a class="dropdown-toggle nav-link" role="button">Manage</a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-item"><a href="#">save data</a></li>
-                        <li class="dropdown-item"><a href="#">fetch data</a></li>
+                        <li class="dropdown-item" (click)="onSave()"><a>save data</a></li>
+                        <li class="dropdown-item" (click)="fetchRecipes()"><a>fetch data</a></li>
                     </ul>
                 </li>
             </ul>
