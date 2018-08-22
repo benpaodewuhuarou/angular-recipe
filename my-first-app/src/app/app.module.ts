@@ -25,16 +25,15 @@ import { AuthModule } from 'src/app/auth/auth.module';
     AppComponent,
     HeaderComponent,
     ErrorComponent,
-    
     HomeComponent
   ],
   imports: [
-    AuthModule,
     BrowserModule,
     HttpModule,
     AppRoutingModule,
     SharedModule,
-    ShoppingListModule
+    ShoppingListModule,
+    AuthModule,
    
   ],
   providers: [ShoppinglistService,RecipeService,Service,AuthService,AuthGuard],
